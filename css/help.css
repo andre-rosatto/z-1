@@ -1,0 +1,95 @@
+#help-wrapper {
+	height: 100vh;
+	width: 100vw;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+	background-color: var(--modal-background-color);
+	position: absolute;
+	visibility: hidden;
+	z-index: 1;
+	user-select: none;
+}
+
+#help-wrapper.show {
+	visibility: visible;
+}
+
+#help-game-title {
+	width: 835px;
+	height: 25px;
+	text-align: center;
+	background-color: var(--background-color);
+	margin-bottom: 15px;
+}
+
+#bottom-wrapper {
+	width: 835px;
+	display: flex;
+	flex-direction: row;
+}
+
+#tabs-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 190px;
+}
+
+.tab {
+	width: 175px;
+	border: var(--border);
+	margin-top: -1px;
+	background-color: var(--background-color);
+	cursor: pointer;
+}
+
+.tab.selected {
+	margin-left: 15px;
+	cursor: default;
+}
+
+#tab0 {
+	margin-top: 0;
+}
+
+#text-wrapper {
+	border: var(--border);
+	width: 645px;
+	height: 645px;
+	background-color: var(--background-color);
+	overflow: hidden auto;
+}
+
+.text {
+	margin: 0 5px;
+	display: none;
+}
+
+.text.selected {
+	display: inline-block;
+}
+
+.text pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+span.info {
+	font-style: italic;
+}
+
+.tab-section-end {
+	margin-bottom: 25px;
+}
+
+#help-ok-button {
+	width: 100px;
+	height: 50px;
+	margin-left: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 15px;
+}

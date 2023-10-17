@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+:root {
+	--html-background-color: #333;
+	--scrollbar-bg: #333;
+	--scrollbar-thumb: #666;
+	--modal-background-color: rgba(0, 0, 0, .75);
+	--background-color: black;
+	--background-color-disabled: #444;
+	--text-color: white;
+	--border: 1px solid white;
+	--selected-line: #ddd;
+	--selected-line-text: black;
+	--error-line: #d00;
+	--error-line-text: black;
+	--error-text-color: #f55;
+	--button-normal-bg: #070;
+	--button-normal-text: white;
+	--button-stop-bg: #700;
+	--button-stop-text: white;
+	--button-help-bg: #037;
+	--button-help-text: white;
+	--button-border-off: 1px solid rgba(255, 255, 255, 0.25);
+	--button-border-on: 1px solid rgba(255, 255, 255, 0.6);
+	--button-border-click: 1px solid white;
+	--button-disabled-color: #030;
+	--button-disabled-text-color: #999;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 18px;
+	font-family: 'Source Code Pro';
+	color: var(--text-color);
+	text-transform: uppercase;
+}
+
+html {
+	background-color: var(--html-background-color);
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-thumb);
+}
+
+.button {
+	border: var(--button-border-off);
+	font-weight: bold;
+	background-color: var(--button-normal-bg);
+	color: var(--button-normal-text);
+	border-radius: 5px;
+	text-align: center;
+	user-select: none;
+	cursor: pointer;
+}

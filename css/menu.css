@@ -1,0 +1,196 @@
+#menu-wrapper {
+	height: 100vh;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	user-select: none;
+}
+
+.box {
+	border: var(--border);
+	background-color: var(--background-color);
+	box-sizing: border-box;
+}
+
+#title-bar-wrapper {
+	display: flex;
+	flex-direction: row;
+	width: 835px;
+}
+
+#game-title {
+	flex: 1;
+	height: 25px;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+#menu-help-button {
+	height: 25px;
+	margin-left: 15px;
+	padding: 1px 10px 0 10px;
+	background-color: var(--button-help-bg);
+}
+
+#levels-big-wrapper {
+	width: 835px;
+	height: 735px;
+	display: flex;
+	flex-direction: row;
+}
+
+#levels-wrapper {
+	width: 150px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.level {
+	width: 125px;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	margin-bottom: -1px;
+	cursor: pointer;
+}
+
+.selected {
+	margin-left: 15px;
+	cursor: default;
+}
+
+.checkbox {
+	width: 20px;
+	height: 15px;
+	margin: -16px 4px 4px 4px;
+	font-size: 24px;
+}
+
+.checkbox::before {
+	content: "☐";
+}
+
+.checkbox.checked::before {
+	content: "☑";
+}
+
+#programs-wrapper {
+	width: 685px;
+	display: flex;
+	flex-direction: column;
+}
+
+#menu-instructions {
+	height: 50px;
+}
+
+#instructions-text {
+	min-height: 100%;
+	padding: 0 5px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+#solutions-wrapper {
+	display: flex;
+	flex-direction: row;
+	border: var(--border);
+	margin-top: -1px;
+	flex: 1;
+	overflow: hidden;
+}
+
+.prg-wrapper {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.prg-titlebar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 0 5px;
+	margin: -1px -1px 0 -1px;
+}
+
+.menu-button {
+	height: 20px;
+	margin-top: 1px;
+}
+
+.menu-button p {
+	margin-top: -2px;
+	font-weight: normal;
+}
+
+#edit-btn0, #edit-btn1, #edit-btn2 {
+	width: 60px;
+}
+
+#del-btn0, #del-btn1, #del-btn2 {
+	background-color: var(--button-stop-bg);
+	width: 50px;
+}
+
+.pass {
+	display: flex;
+	flex-direction: row;
+}
+
+#checkbox0, #checkbox1, #checkbox2 {
+	margin-top: -6px;
+}
+
+.menu-program-wrapper {
+	height: 100%;
+	position: relative;
+}
+
+.prg-text {
+	max-width: 229px;
+	border-right: var(--border);
+	padding-left: 5px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: 100%;
+}
+
+.delete-modal {
+	position: absolute;
+	background-color: var(--modal-background-color);
+	border-right: var(--border);
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 15px;
+	visibility: hidden;
+}
+
+.delete-modal.show {
+	visibility: visible;
+}
+
+.delete-modal p {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.modal-button {
+	height: 35px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#del-confirm-btn0, #del-confirm-btn1, #del-confirm-btn2 {
+	background-color: var(--button-stop-bg);
+	margin-bottom: 15px;
+}
