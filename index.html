@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Z-1</title>
+	<link href="css/main.css" rel="stylesheet"></link>
+	<link href="css/menu.css" rel="stylesheet"></link>
+	<link href="css/game.css" rel="stylesheet"></link>
+	<link href="css/help.css" rel="stylesheet"></link>
+	<script src="js/main.js" type="module"></script>
+</head>
+
+<template id="game-template">
+	<div id="game-big-wrapper">
+		<div id="game-title" class="box">Z-1 - Created by André Rosatto</div>
+		<div id="game-wrapper">
+			<div id="data-wrapper">
+				<div id="labels-wrapper">
+					<div class="label">input</div>
+					<div class="label">target</div>
+					<div class="label">output</div>
+				</div>
+				<div id="data-columns-wrapper">
+					<pre id="input-values"></pre>
+					<pre id="target-values"></pre>
+					<pre id="output-values"></pre>
+				</div>
+			</div>
+			<div id="mid-column">
+				<div id="instructions-wrapper">
+					<div class="label">instructions</div>
+					<pre id="instructions"></pre>
+				</div>
+				<div id="program-wrapper">
+					<div class="label">program</div>
+					<div id="code-wrapper">
+						<pre id="code-area" contenteditable autofocus></pre>
+					</div>
+				</div>
+				<div id="error-wrapper">
+					<div class="label">error</div>
+					<pre id="errors"></pre>
+				</div>
+			</div>
+			<div id="right-column">
+				<div id="memory-wrapper">
+					<div class="label">memory</div>
+					<div id="registers-wrapper">
+						<div>
+							<pre class="register">a</pre>
+							<pre id="register0" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">b</pre>
+							<pre id="register1" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">c</pre>
+							<pre id="register2" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">d</pre>
+							<pre id="register3" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">e</pre>
+							<pre id="register4" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">f</pre>
+							<pre id="register5" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">g</pre>
+							<pre id="register6" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">h</pre>
+							<pre id="register7" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">i</pre>
+							<pre id="register8" class="register-value">0</pre>
+						</div>
+						<div>
+							<pre class="register">j</pre>
+							<pre id="register9" class="register-value">0</pre>
+						</div>
+					</div>
+				</div>
+				<div id="buttons-wrapper">
+					<div id="step-btn" class="button game-button">&gt; step</div>
+					<div id="run-btn" class="button game-button">&gt;&gt; run</div>
+					<div id="stop-btn" class="button game-button on">&#x25A2; stop</div>
+					<div id="help-btn" class="button game-button">? help</div>
+					<div id="menu-btn" class="button game-button">&#x25A4; menu</div>
+				</div>
+		</div>
+		</div>
+	</div>
+</template>
+
+<template id="menu-template">
+	<div id="menu-wrapper">
+		<div id="title-bar-wrapper">
+			<div id="game-title" class="box">Z-1 - Created by André Rosatto</div>
+			<div id="menu-help-button" class="button menu-button"><p>? help</p></div>
+		</div>
+		<div id="levels-big-wrapper">
+			<div id="levels-wrapper"></div>
+			<div id="programs-wrapper">
+				<div id="menu-instructions" class="box">
+					<pre id="instructions-text"></pre>
+				</div>
+				<div id="solutions-wrapper">
+					<div class="prg-wrapper">
+						<div class="prg-titlebar box">
+							<div id="edit-btn0" class="button menu-button">
+								<p>edit</p>
+							</div>
+							<div class="pass">
+								<p>pass</p>
+								<div class="checkbox" id="checkbox0"></div>
+							</div>
+							<div id="del-btn0" class="button menu-button">
+								<p>del</p>
+							</div>
+						</div>
+						<div class="menu-program-wrapper">
+							<pre id="prg0" class="prg-text"></pre>
+							<div id="delete-confirm0" class="delete-modal">
+								<p>delete this program?</p>
+								<div id="del-confirm-btn0" class="button menu-button modal-button">delete</div>
+								<div id="cancel-btn0" class="button menu-button modal-button">cancel</div>
+							</div>
+						</div>
+					</div>
+					<div class="prg-wrapper">
+						<div class="prg-titlebar box">
+							<div id="edit-btn1" class="button menu-button">
+								<p>edit</p>
+							</div>
+							<div class="pass">
+								<p>pass</p>
+								<div class="checkbox" id="checkbox1"></div>
+							</div>
+							<div id="del-btn1" class="button menu-button">
+								<p>del</p>
+							</div>
+						</div>
+						<div class="menu-program-wrapper">
+							<pre id="prg1" class="prg-text"></pre>
+							<div id="delete-confirm1" class="delete-modal">
+								<p>delete this program?</p>
+								<div id="del-confirm-btn1" class="button menu-button modal-button">delete</div>
+								<div id="cancel-btn1" class="button menu-button modal-button">cancel</div>
+							</div>
+						</div>
+					</div>
+					<div class="prg-wrapper">
+						<div class="prg-titlebar box">
+							<div id="edit-btn2" class="button menu-button">
+								<p>edit</p>
+							</div>
+							<div class="pass">
+								<p>pass</p>
+								<div class="checkbox" id="checkbox2"></div>
+							</div>
+							<div id="del-btn2" class="button menu-button">
+								<p>del</p>
+							</div>
+						</div>
+						<div class="menu-program-wrapper">
+							<pre id="prg2" class="prg-text"></pre>
+							<div id="delete-confirm2" class="delete-modal">
+								<p>delete this program?</p>
+								<div id="del-confirm-btn2" class="button menu-button modal-button">delete</div>
+								<div id="cancel-btn2" class="button menu-button modal-button">cancel</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template id="level-template">
+	<div class="level box" id="">
+		<div class="checkbox"></div>
+		<p>level 1</p>
+	</div>
+</template>
+
+<body>
+	<div id="help-wrapper">
+		<div id="help-game-title" class="box">Z-1 - Help</div>
+		<div id="bottom-wrapper">
+			<div id="tabs-wrapper">
+				<div id="tab0" class="tab selected">introduction</div>
+				<div id="tab1" class="tab">levels menu</div>
+				<div id="tab2" class="tab">program editing</div>
+				<div id="tab3" class="tab tab-section-end">memory</div>
+				<div id="tab4" class="tab">z-1 language</div>
+				<div id="tab5" class="tab">in</div>
+				<div id="tab6" class="tab">out</div>
+				<div id="tab7" class="tab">neg</div>
+				<div id="tab8" class="tab">ld</div>
+				<div id="tab9" class="tab">sav</div>
+				<div id="tab10" class="tab">add</div>
+				<div id="tab11" class="tab">jp</div>
+				<div id="tab12" class="tab">jpz</div>
+				<div id="tab13" class="tab">jpn</div>
+				<div id="tab14" class="tab">jpg</div>
+				<div id="tab15" class="tab tab-section-end">jpl</div>
+				<div id="tab16" class="tab">ex: double</div>
+				<div id="tab17" class="tab">ex: subtraction</div>
+				<div id="tab18" class="tab">ex: loop</div>
+				<div id="tab19" class="tab">ex: ld register</div>
+			</div>
+			<div id="text-wrapper">
+				<div id="text0" class="text selected">
+					<pre>INTRODUCTION
+============
+
+WELCOME TO Z-1, THE PROGRAMMING GAME!
+
+THE GOAL OF THE GAME IS TO CREATE PROGRAMS WITH THE Z-1 LANGUAGE TO FULFILL THE TASKS FOR EACH LEVEL.</pre>
+				</div>
+				
+				<div id="text1" class="text">
+					<pre>THE LEVEL SELECTION MENU
+========================
+
+WHEN YOU START THE GAME, YOU WILL SEE THE LEVEL SELECTION MENU.
+
+THERE ARE TWO MAIN PARTS. ON THE LEFT, THERE'S A LIST OF LEVELS AVAILABLE TO PLAY. A TICKED LEVEL MEANS THAT AT LEAST ONE OF THE PROGRAMS HAS PASSED THE TEST. TO SELECT A LEVEL, JUST CLICK IT.
+
+ON THE RIGHT, THERE'S INFORMATION ABOUT THE SELECTED LEVEL. THE SECTION AT THE TOP SHOWS THE INSTRUCTIONS FOR THE LEVEL.
+
+UNDER THAT, THERE ARE THREE COLUMNS. EACH COLUMN SHOWS INFORMATION ABOUT THE THREE POSSIBLE PROGRAMS YOU CAN WRITE FOR THE LEVEL.
+
+THE HEADER OF THESE COLUMNS SHOWS THE 'EDIT' BUTTON (WHICH WILL TAKE YOU TO THE PROGRAM EDITING SCREEN), A CHECKBOX SHOWING IF THE PROGRAM HAS PASSED THE TEST, AND THE 'DEL' BUTTON (WHICH WILL SHOW THE CONFIRMATION BOX TO DELETE THE PROGRAM).
+
+UNDER EACH HEADING, THERE'S A LONG COLUMN SHOWING THE CODE OF EACH PROGRAM.</pre>
+				</div>
+
+				<div id="text2" class="text">
+					<pre>THE PROGRAM EDITING MENU
+========================
+
+ON THE LEFT-HAND SIDE OF THE SCREEN THERE ARE THREE COLUMNS LABELLED 'INPUT', 'TARGET', AND 'OUTPUT'. THE GOAL OF THE GAME IS TO USE THE INPUT VALUES TO OUTPUT THE SAME VALUES AS THE ONES UNDER THE TARGET COLUMN. IF THE TARGET AND THE OUTPUT COLUMNS AREN'T EXACTLY THE SAME, THE PROGRAM WON'T BE CONSIDERED SUCCESSFUL.
+
+THE CENTRE SECTION CONSTAINS THE LEVEL INSTRUCTIONS AT THE TOP, THE EVENTUAL ERROR MESSAGES AT THE BOTTOM, AND YOUR PROGRAM IN THE MIDDLE. THIS IS WHERE YOU'RE GOING TO WRITE YOUR PROGRAM.
+
+THE RIGHT PART OF THE SCREEN SHOWS THE MEMORY SECTION (SEE THE 'MEMORY' SECTION) WITH THE VALUES FOR THE REGISTERS. UNDER THAT, THERE ARE THE CONTROL BUTTONS.
+
+THE 'STEP' BUTTON WILL RUN THE PROGRAM LINE BY LINE. IF THE PROGRAM REACHES THE BOTTOM, IT WILL MOVE TO THE FIRST LINE.
+
+THE 'RUN' BUTTON WILL CONTINUOUSLY RUN THE PROGRAM UNTIL THERE'S AN ERROR, THE LEVEL IS FINISHED, OR THE 'STOP' BUTTON IS PRESSED. IF THE PROGRAM REACHES THE BOTTOM, IT WILL MOVE TO THE FIRST LINE.
+
+THE 'STOP' BUTTON WILL STOP AND RESET THE EXECUTION OF THE PROGRAM.
+
+THE 'HELP' BUTTON WILL SHOW THIS.
+
+THE 'MENU' BUTTON WILL TAKE YOU BACK TO THE LEVEL SELECTION MENU.</pre>
+				</div>
+
+				<div id="text3" class="text">
+					<pre>THE MEMORY
+==========
+
+THE MEMORY TABLE IS ON THE RIGHT-HAND SIDE OF THE PROGRAM EDITING SCREEN. THIS TABLE SHOWS ALL THE TEN REGISTERS AVAILABLE AND THEIR CURRENT VALUES.
+
+ALL REGISTERS START WITH A VALUE OF 0, AND THEY ARE REFERRED TO BY THEIR LETTERS (A-F) IN THE PROGRAM.
+
+REGISTER 'A' IS SPECIAL. IT'S CALLED THE 'ACCUMULATOR'. IT HOLDS THE RESULTS OF ALL OPERATIONS IN THE PROGRAMS. FOR EXAMPLE, WHEN USING THE 'ADD' INSTRUCTION, THE RESULT WILL BE STORED IN THE ACCUMULATOR.</pre>
+				</div>
+
+				<div id="text4" class="text">
+					<pre>THE Z-1 PROGRAMMING LANGUAGE
+============================
+
+THE Z-1 PROGRAMMING LANGUAGE IS A VERY SIMPLE, ASSEMBLY-LIKE LANGUAGE.
+
+THE INSTRUCTIONS AVAILABLE ARE: 'IN', 'OUT', 'NEG', 'LD', 'ADD', 'SAV', 'JP', 'JPZ', 'JPN', 'JPG', AND 'JPL'.
+
+Z-1 ALSO SUPPORTS LABELS INDENTIFIED WITH A COLON AFTER THE LABEL NAME (E.G.: 'LOOP:'). LABELS NEED TO BE IN THEIR OWN LINE (A LINE SUCH AS 'LOOP: IN' WILL THROW A SYNTAX ERROR). LABELS ARE USED FOR JUMP INSTRUCTIONS.</pre>
+				</div>
+
+				<div id="text5" class="text">
+					<pre>IN
+==
+
+THE INSTRUCTION 'IN' WILL READ A VALUE FROM THE INPUT COLUMN AND STORE IT IN THE ACCUMULATOR (REGISTER 'A').
+
+IF THERE ARE NO MORE INPUT VALUES TO READ, THE PROGRAM WILL THROW AN ERROR.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 25]</span>
+  IN <span class="info">[A = 26]</span></pre>
+				</div>
+
+				<div id="text6" class="text">
+					<pre>OUT
+===
+
+THE INSTRUCTION 'OUT' WILL OUTPUT THE VALUE OF THE ACCUMULATOR (REGISTER 'A') TO THE OUTPUT COLUMN.
+
+IF THE OUTPUT VALUE IS DIFFERENT FROM THE TARGET VALUE, IT WILL BE MARKED IN RED AND THE PROGRAM WILL BE CONSIDERED UNSUCCESSFUL.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 12]</span>
+  IN <span class="info">[A = 12]</span>
+  OUT <span class="info">[OUTPUT = 12]</span></pre>
+				</div>
+
+				<div id="text7" class="text">
+					<pre>NEG
+===
+
+THE 'NEG' (NEGATE) INSTRUCTION WILL INVERT THE SIGN OF THE VALUE IN THE ACCUMULATOR, MAKING A NEGATIVE NUMBER POSITIVE, AND A POSITIVE NUMBER NEGATIVE.
+
+THE NEGATED VALUE WILL BE STORED IN THE ACCUMULATOR.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 45]</span>
+  IN <span class="info">[A = 45]</span>
+  NEG <span class="info">[A = -45]</span>
+
+<span class="info">[INPUT = -2]</span>
+  IN <span class="info">[A = -2]</span>
+  NEG <span class="info">[A = 2]</span>
+	
+<span class="info">[INPUT = 0]</span>
+  IN <span class="info">[A = 0]</span>
+  NEG <span class="info">[A = 0]</span></pre>
+				</div>
+
+				<div id="text8" class="text">
+					<pre>LD
+==
+
+THE 'LD' (LOAD) WILL LOAD A NUMERIC VALUE TO THE ACCUMULATOR. THE VALUE MUST BE PASSED AS A PARAMETER.
+
+
+EXAMPLE PROGRAM:
+----------------
+  LD 86 <span class="info">[A = 86]</span>
+	
+  LD 0 <span class="info">[A = 0]</span>
+	
+  LD -11 <span class="info">[A = -11]</span></pre>
+				</div>
+
+				<div id="text9" class="text">
+					<pre>SAV
+===
+
+THE 'SAV' (SAVE) INSTRUCTION WILL COPY THE ACCUMULATOR VALUE INTO A REGISTER THAT MUST BE PASSED AS A PARAMETER.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 44]</span>
+  IN <span class="info">[A = 44]</span>
+  SAV B <span class="info">[B = 44]</span></pre>
+				</div>
+
+				<div id="text10" class="text">
+					<pre>ADD
+===
+
+  THE 'ADD' INSTRUCTION WILL ADD THE VALUE OF THE SPECIFIED REGISTER TO THE ACCUMULATOR. THE RESULT WILL BE STORED IN THE ACCUMULATOR.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 7]</span>
+  IN <span class="info">[A = 7]</span>
+  SAV B <span class="info">[B = 7]</span>
+<span class="info">[INPUT = 2]</span>
+  IN <span class="info">[A = 2]</span>
+  ADD B <span class="info">[A = 9]</span>
+
+<span class="info">[INPUT = 32]</span>
+  IN <span class="info">[A = 32]</span>
+  ADD A <span class="info">[A = 64]</span>
+	
+<span class="info">[INPUT = -7]</span>
+  IN <span class="info">[A = -7]</span>
+  SAV C <span class="info">[C = -7]</span>
+<span class="info">[INPUT = 1]</span>
+  IN <span class="info">[A = 1]</span>
+  ADD C <span class="info">[A = -6]</span></pre>
+				</div>
+
+				<div id="text11" class="text">
+					<pre>JP
+==
+
+THE 'JP' (JUMP) INSTRUCTION WILL MOVE THE PROGRAM EXECUTION TO THE NEXT LINE AFTER THE SPECIFIED LABEL. THIS IS AN UNCONDITIONAL JUMP.
+
+
+EXAMPLE PROGRAM:
+----------------
+  LD -1 <span class="info">[A = -1]</span>
+  SAV B <span class="info">[B = -1]</span>
+  LOOP:
+<span class="info">[INPUT = 10]</span>
+  IN <span class="info">[A = 10]</span>
+  ADD B <span class="info">[A = 9]</span>
+  OUT <span class="info">[OUTPUT = 9]</span>
+  JP LOOP <span class="info">[MOVE TO LINE AFTER 'LOOP:']</span></pre>
+				</div>
+
+				<div id="text12" class="text">
+					<pre>JPZ
+===
+
+THE 'JPZ' (JUMP IF ZERO) INSTRUCTION WILL MOVE THE PROGRAM EXECUTION TO THE NEXT LINE AFTER THE SPECIFIED LABEL IF THE ACCUMULATOR VALUE IS 0. IT WILL CONTINUE EXECUTION NORMALLY OTHERWISE. THIS IS A CONDITIONAL JUMP.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 10]</span>
+  ZERO:
+  IN <span class="info">[A = 10]</span>
+  JPZ ZERO <span class="info">['A' ISN'T 0, SO JUMP WON'T HAPPEN]</span>
+	
+<span class="info">[INPUT = 0]</span>
+  ZERO:
+  IN <span class="info">[A = 0]</span>
+  JPZ ZERO <span class="info">['A' IS 0, SO JUMP WILL HAPPEN]</span></pre>
+				</div>
+
+				<div id="text13" class="text">
+					<pre>JPN
+===
+
+THE 'JPN' (JUMP IF NOT ZERO) INSTRUCTION WILL MOVE THE PROGRAM EXECUTION TO THE NEXT LINE AFTER THE SPECIFIED LABEL IF THE ACCUMULATOR VALUE ISN'T 0. IT WILL CONTINUE EXECUTION NORMALLY OTHERWISE. THIS IS A CONDITIONAL JUMP.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 10]</span>
+  NOTZERO:
+  IN <span class="info">[A = 10]</span>
+  JPN NOTZERO <span class="info">['A' ISN'T 0, SO JUMP WILL HAPPEN]</span>
+	
+<span class="info">[INPUT = 0]</span>
+  NOTZERO:
+  IN <span class="info">[A = 0]</span>
+  JPN NOTZERO <span class="info">['A' IS 0, SO JUMP WON'T HAPPEN]</span></pre>
+				</div>
+
+				<div id="text14" class="text">
+					<pre>JPG
+===
+
+THE 'JPG' (JUMP IF GREATER THAN ZERO) INSTRUCTION WILL MOVE THE PROGRAM EXECUTION TO THE NEXT LINE AFTER THE SPECIFIED LABEL IF THE ACCUMULATOR VALUE IS GREATER THAN 0. IT WILL CONTINUE EXECUTION NORMALLY OTHERWISE. THIS IS A CONDITIONAL JUMP.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 10]</span>
+  GTZ:
+  IN <span class="info">[A = 10]</span>
+  JPG GTZ <span class="info">['A' IS GREATER THAN 0, SO JUMP WILL HAPPEN]</span>
+	
+<span class="info">[INPUT = 0]</span>
+  GTZ:
+  IN <span class="info">[A = 0]</span>
+  JPG GTZ <span class="info">['A' ISN'T GREATER THAN 0, SO JUMP WON'T HAPPEN]</span>
+	
+<span class="info">[INPUT = -3]</span>
+  GTZ:
+  IN <span class="info">[A = -3]</span>
+  JPG GTZ <span class="info">['A' ISN'T GREATER THAN 0, SO JUMP WON'T HAPPEN]</span></pre>
+				</div>
+
+				<div id="text15" class="text">
+					<pre>JPL
+===
+
+THE 'JPL' (JUMP IF LESS THAN ZERO) INSTRUCTION WILL MOVE THE PROGRAM EXECUTION TO THE NEXT LINE AFTER THE SPECIFIED LABEL IF THE ACCUMULATOR VALUE IS LESS THAN 0. IT WILL CONTINUE EXECUTION NORMALLY OTHERWISE. THIS IS A CONDITIONAL JUMP.
+
+
+EXAMPLE PROGRAM:
+----------------
+<span class="info">[INPUT = 10]</span>
+  LTZ:
+  IN <span class="info">[A = 10]</span>
+  JPG LTZ <span class="info">['A' ISN'T LESS THAN 0, SO JUMP WON'T HAPPEN]</span>
+	
+<span class="info">[INPUT = 0]</span>
+  LTZ:
+  IN <span class="info">[A = 0]</span>
+  JPG LTZ <span class="info">['A' ISN'T LESS THAN 0, SO JUMP WON'T HAPPEN]</span>
+
+<span class="info">[INPUT = -3]</span>
+  LTZ:
+  IN <span class="info">[A = -3]</span>
+  JPG LTZ <span class="info">['A' IS LESS THAN 0, SO JUMP WILL HAPPEN]</span></pre>
+				</div>
+
+				<div id="text16" class="text">
+					<pre>EXAMPLE CODE: DOUBLE
+=======================
+
+TO DOUBLE A VALUE, ADD THE ACCUMULATOR VALUE TO ITSELF.
+
+THIS CODE OUTPUTS THE INPUT VALUE DOUBLED:
+  IN
+  ADD A
+  OUT</pre>
+				</div>
+
+				<div id="text17" class="text">
+					<pre>EXAMPLE CODE: SUBTRACTION
+=========================
+
+Z-1 DOESN'T HAVE A SUBTRACT INSTRUCTION. SO, TO SUBTRACT A VALUE, SAVE A NEGATE VALUE AND THEN ADD IT TO THE ACCUMULATOR.
+
+THIS CODE OUTPUTS THE INPUT VALUE MINUS 7:
+  LD -7
+  SAV B
+  IN
+  ADD B</pre>
+				</div>
+
+				<div id="text18" class="text">
+					<pre>EXAMPLE CODE: LOOP
+==================
+
+YOU WILL NEED A CONDITIONAL JUMP TO CREATE A LOOP.
+
+THIS CODE OUTPUTS ALL THE NUMBERS FROM THE INPUT VALUE DOWN TO ZERO:
+  LD -1
+  SAV B
+  START:
+  IN
+  LOOP:
+  OUT
+  ADD B
+  JPL START
+  JP LOOP</pre>
+				</div>
+
+				<div id="text19" class="text">
+					<pre>EXAMPLE CODE: LOAD VALUE FROM REGISTER
+======================================
+
+TO GET THE VALUE OF A REGISTER INTO THE ACCUMULATOR, YOU'LL HAVE TO USE THE 'ADD' INSTRUCTION.
+
+THIS CODE RECOVERS THE VALUE OF REGISTER 'B' TO THE ACCUMULATOR:
+  LD 0
+  ADD B</pre>
+				</div>
+			</div>
+		</div>
+		<div id="help-ok-button" class="button"><p>OK</p></div>
+	</div>
+</body>
+</html>
