@@ -38,7 +38,8 @@ export default class Parser {
 	}
 
 	formatCode() {
-		this.codeDiv.textContent.split('\n').forEach(line => {
+		this.codeDiv.innerHTML = this.codeDiv.innerHTML.replaceAll('<br>', '\n');
+		this.codeDiv.innerHTML.split(/\r?\n/).forEach(line => {
 			let cleanLine = line.toUpperCase().replace(/\t/g, ' ').trim();
 			if (!cleanLine) {
 				cleanLine = null;

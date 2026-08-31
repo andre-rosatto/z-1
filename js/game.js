@@ -60,6 +60,7 @@ export default class Game {
 	}
 
 	saveProgram() {
+		this.playerData[this.levelIdx][this.programIdx].program = this.program.codeDiv.textContent;
 		localStorage.setItem('z1-playerdata', JSON.stringify(this.playerData));
 	}
 
